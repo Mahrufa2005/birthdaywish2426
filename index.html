@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Birthday Surprise for Amrin 💖</title>
+<style>
+:root{--pink:#ff5e9c;--purple:#8d65e8;--ink:#54265f}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;overflow-x:hidden;font-family:system-ui,Arial,sans-serif;color:var(--ink);text-align:center;background:radial-gradient(circle at 20% 15%,#fff5fb 0 8%,transparent 25%),radial-gradient(circle at 85% 20%,#eee2ff 0 10%,transparent 28%),linear-gradient(135deg,#ffd8e8,#e8d9ff 55%,#ffe9d5)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(#fff 1.5px,transparent 1.5px);background-size:34px 34px;animation:twinkle 4s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.2}to{opacity:.7}}
+.wrap{position:relative;z-index:1;width:min(720px,94%);margin:auto;padding:35px 12px 50px}
+.pill{display:inline-block;padding:8px 15px;border:1px solid #ffffffb5;border-radius:99px;background:#ffffff80;font-size:.9rem}
+h1{font-size:clamp(2rem,7vw,3.5rem);margin:14px 0 8px;color:#b83280;text-shadow:0 3px #fff8}
+.sub{margin:0 auto 20px;max-width:520px;line-height:1.6}
+.stage{background:#ffffffa8;border:1px solid #fff;border-radius:28px;padding:24px 15px;box-shadow:0 18px 50px #8955a42b;backdrop-filter:blur(8px)}
+.gift-area{min-height:270px;display:grid;place-items:center;perspective:800px}
+.gift{position:relative;width:170px;height:145px;margin-top:55px;cursor:pointer;animation:bob 2.5s ease-in-out infinite;filter:drop-shadow(0 15px 12px #a84c8033)}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
+.box{position:absolute;bottom:0;left:0;width:170px;height:105px;border-radius:8px 8px 14px 14px;background:linear-gradient(100deg,#ff4f93,#ff80b4);border:2px solid #fff7}
+.box:before{content:"";position:absolute;left:65px;top:0;width:35px;height:100%;background:linear-gradient(90deg,#ffeaa7,#fff5c9,#ffd66b)}
+.lid{position:absolute;z-index:2;top:20px;left:-10px;width:190px;height:38px;border-radius:8px;background:linear-gradient(#ff8bb8,#f64288);border:2px solid #fff8;transform-origin:12% 100%;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.lid:before{content:"";position:absolute;left:76px;top:0;width:34px;height:100%;background:linear-gradient(90deg,#ffeaa7,#fff5c9,#ffd66b)}
+.bow{position:absolute;z-index:3;top:-8px;left:68px;width:36px;height:25px;border:8px solid #ffe8a3;border-radius:50% 50% 10% 50%;transform:rotate(20deg);transition:transform .9s}
+.bow:after{content:"";position:absolute;width:36px;height:25px;border:8px solid #ffe8a3;border-radius:50% 50% 50% 10%;left:5px;top:-7px;transform:rotate(45deg)}
+.gift.open{animation:none}.gift.open .lid{transform:translate(-25px,-85px) rotate(-28deg)}.gift.open .bow{transform:translate(-25px,-85px) rotate(-15deg)}
+.hint{font-weight:700;margin:8px 0 18px}
+button{border:0;border-radius:999px;padding:13px 22px;color:white;font-size:1rem;font-weight:750;cursor:pointer;background:linear-gradient(100deg,#ff4f93,#9563e9);box-shadow:0 8px 18px #c95d9c38}
+.hidden{display:none!important}
+.qr-panel{margin:22px auto 0;padding:20px 12px;max-width:390px;background:#fff;border-radius:22px;box-shadow:0 8px 25px #8f5da226;animation:pop .55s ease both}
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+#qr{width:210px;height:210px;display:block;margin:14px auto;border:8px solid white}
+.small{font-size:.88rem;line-height:1.5;color:#76527d}
+.message{margin:18px auto 0;max-width:520px;padding:26px 20px;background:#fffdfd;border-radius:24px;box-shadow:0 10px 35px #8f5da226;animation:pop .7s ease both}
+.message h2{color:#e53d8a;font-size:clamp(1.8rem,6vw,2.5rem);margin:5px 0 12px}.message p{line-height:1.8}.emoji{font-size:2rem;letter-spacing:8px}.footer{margin-top:20px;font-size:.8rem;opacity:.75}
+.confetti{position:fixed;z-index:5;top:-20px;pointer-events:none;animation:fall 3.4s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.15}}
+.float{position:fixed;bottom:-35px;z-index:0;pointer-events:none;animation:rise 8s linear forwards}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<span class="pill">✨ A tiny surprise made just for you ✨</span>
+<h1 id="pageTitle">A Birthday Surprise for Amrin!</h1>
+<p class="sub" id="intro">Amrin, something special is waiting for you. Tap the box to open your surprise. 💗</p>
+<main class="stage" id="boxScreen">
+<div class="gift-area"><div class="gift" id="box" role="button" tabindex="0" aria-label="Open box" onclick="openBox()"><div class="lid"></div><div class="bow"></div><div class="box"></div></div></div>
+<p class="hint" id="hint">✨ Tap the box to open it ✨</p>
+<button id="openBtn" onclick="openBox()">Open the Box 💖</button>
+<section class="qr-panel hidden" id="qrPanel">
+<div class="emoji">💖 ✨ 🎉</div><h2>One More Surprise!</h2>
+<p>Scan this QR code to reveal your birthday message 💌</p>
+<img id="qr" alt="QR code for Amrin's birthday message">
+<p class="small">Open your phone camera and point it at the code.</p>
+</section>
+</main>
+<section class="message hidden" id="message">
+<div class="emoji">🎂 🎈 💗</div><h2>Happy Birthday, Amrin!</h2>
+<p>Wishing you a day full of laughter, love, sweet surprises and beautiful memories.</p>
+<p>Thank you for being such a wonderful part of my life. May your wishes come true, your heart stay happy, and your year be filled with amazing things. 💕</p>
+<p><strong>You deserve all the happiness in the world!</strong></p><div class="emoji">🌷 🎁 🦋</div>
+<p>With lots of love,<br><strong>Your Friend 💖</strong></p>
+<button onclick="celebrate()">Celebrate Again 🎉</button>
+</section>
+<div class="footer">Made for Amrin with love, sparkles and a little bit of magic ✨</div>
+</div>
+<script>
+const box=document.getElementById('box');
+function publishedUrl(){
+  // GitHub Pages provides the same URL on every device; local file URLs are deliberately rejected.
+  const u=new URL(window.location.href);
+  if(u.protocol!=='https:' && u.protocol!=='http:') return null;
+  u.searchParams.set('surprise','1');
+  u.hash='';
+  return u.toString();
+}
+function openBox(){
+  box.classList.add('open');
+  document.getElementById('hint').textContent='Yay, Amrin! The box is open! 💖';
+  document.getElementById('openBtn').classList.add('hidden');
+  const panel=document.getElementById('qrPanel');
+  panel.classList.remove('hidden');
+  const target=publishedUrl();
+  const qr=document.getElementById('qr');
+  if(!target){
+    qr.removeAttribute('src');
+    qr.alt='QR code will appear after publishing this page online';
+    panel.querySelector('p').textContent='Publish this page on GitHub Pages first. Then the QR code will appear here with the public website link.';
+    return;
+  }
+  qr.src='https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=8&data='+encodeURIComponent(target);
+  confetti();
+}
+function confetti(){
+ const symbols=['💖','✨','🎉','🌸','💗'];
+ for(let i=0;i<45;i++){const e=document.createElement('span');e.className='confetti';e.textContent=symbols[Math.floor(Math.random()*symbols.length)];e.style.left=Math.random()*100+'vw';e.style.animationDelay=Math.random()*1.2+'s';e.style.fontSize=(14+Math.random()*16)+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),5000)}
+}
+function floating(){setInterval(()=>{const e=document.createElement('span');e.className='float';e.textContent=['💗','💖','✨','🌸'][Math.floor(Math.random()*4)];e.style.left=Math.random()*100+'vw';e.style.fontSize=(18+Math.random()*22)+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),8500)},650)}
+function celebrate(){confetti()}
+box.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openBox()}});
+floating();
+if(new URLSearchParams(window.location.search).get('surprise')==='1'){
+ document.getElementById('boxScreen').classList.add('hidden');
+ document.getElementById('message').classList.remove('hidden');
+ document.getElementById('pageTitle').textContent='Your Surprise Is Here! 💝';
+ document.getElementById('intro').classList.add('hidden');
+ confetti();
+}
+</script>
+</body>
+</html>
